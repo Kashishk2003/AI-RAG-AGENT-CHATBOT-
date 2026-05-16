@@ -1,7 +1,10 @@
+Here's the plain text README for your project:
+
+---
 
 Debales AI Assistant
 
-An intelligent AI chatbot built with LangGraph that answers questions about Debales AI using RAG, and handles general queries using Tavily web search. Built as part of the Debales AI Intern Assignment.
+An intelligent AI chatbot built with LangGraph that answers questions about Debales AI using RAG, and handles general queries using Tavily web search.
 
 Demo Video: https://www.loom.com/share/902bdf116474448a8842cd59490fb640
 
@@ -39,20 +42,20 @@ PROJECT STRUCTURE
 
 debales-ai-agent/
   data/
-    scraped.json        - scraped website content (1054 chunks)
-    chroma/             - local vector database
+    scraped.json — scraped website content (1054 chunks)
+    chroma/ — local vector database
   scripts/
-    ingest.py           - builds vector store from scraped data
+    ingest.py — builds vector store from scraped data
   src/
     __init__.py
-    scraper.py          - Playwright website crawler
-    vectorstore.py      - ChromaDB build and query
-    tools.py            - Tavily web search tool
-    prompts.py          - LLM prompt templates
-    agent.py            - LangGraph workflow
-  cli.py                - CLI chat interface
-  demo.txt              - example prompts and outputs
-  .env.example          - environment variables template
+    agent.py — LangGraph workflow
+    prompts.py — LLM prompt templates
+    scraper.py — Playwright website crawler
+    tools.py — Tavily web search tool
+    vectorstore.py — ChromaDB build and query
+  cli.py — CLI chat interface
+  demo.txt — example prompts and outputs
+  .env.example — environment variables template
   requirements.txt
   README.md
 
@@ -61,7 +64,7 @@ debales-ai-agent/
 SETUP INSTRUCTIONS
 
 1. Clone the repo
-   git clone <your-repo-url>
+   git clone https://github.com/Kashishk2003/AI-RAG-AGENT-CHATBOT-.git
    cd debales-ai-agent
 
 2. Install dependencies
@@ -75,12 +78,12 @@ SETUP INSTRUCTIONS
      TAVILY_API_KEY=your_tavily_key_here
 
    Get your free API keys:
-   - Groq: https://console.groq.com
-   - Tavily: https://tavily.com
+   Groq: https://console.groq.com
+   Tavily: https://tavily.com
 
 4. Scrape the Debales website
    python src/scraper.py
-   Crawls the entire Debales AI website using Playwright and saves 1054 chunks to data/scraped.json. Takes about 5-10 minutes.
+   Crawls the entire Debales AI website and saves 1054 chunks to data/scraped.json. Takes about 5-10 minutes.
 
 5. Build the vector store
    python scripts/ingest.py
@@ -96,7 +99,7 @@ HOW IT WORKS
 1. Scraping — Playwright crawls the entire Debales AI website including JS-rendered content and dynamic integration tabs by clicking each category filter.
 2. Indexing — Text is chunked into 500 character pieces and stored in ChromaDB with source URLs as metadata.
 3. Routing — LangGraph passes the question to a router node which classifies it as DEBALES, GENERAL, or MIXED using Groq LLM.
-4. Retrieval — RAG node queries ChromaDB for top 4 most similar chunks; SERP node calls Tavily for live web results.
+4. Retrieval — RAG node queries ChromaDB for top 4 most similar chunks. SERP node calls Tavily for live web results.
 5. Answer — Final node generates answer using only retrieved context, never from model memory.
 
 ---
@@ -131,7 +134,7 @@ No Hallucination Example:
 
 ---
 
-EVALUATION CRITERIA COVERAGE
+EVALUATION CRITERIA
 
 Correct routing (RAG vs tool): LangGraph router node classifies as DEBALES/GENERAL/MIXED
 Quality of scraping and retrieval: Playwright crawler with 1054 chunks, ChromaDB semantic search
