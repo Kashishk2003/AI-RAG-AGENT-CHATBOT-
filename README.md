@@ -1,4 +1,3 @@
-Here's the plain text README for your project:
 
 ---
 
